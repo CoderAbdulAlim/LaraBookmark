@@ -19,10 +19,14 @@ class PostController extends Controller
 
     public function index()
     {
-        $user = Auth::user();
-        $posts = $user->posts()->with('user')->with('category')->latest()->paginate(2);
+        $posts = Post::with(['user', 'category'])
+            ->latest()
+            ->when(Auth::check(), function ($query) {
+                return $query->where('user_id', Auth::id());
+            })
+            ->paginate(2);
 
-        return view('posts.index', compact('posts'));
+            return view('posts.index', compact('posts'));
     }
 
     public function create()

@@ -22,8 +22,12 @@ class BookmarkController extends Controller
 
     public function index()
     {
-        $bookmarks = Auth::user()->bookmarks()->with(['user', 'category'])->latest()->paginate(2);
-        // $bookmarks = Bookmark::with(['user', 'category'])->latest()->paginate(2);
+        $bookmarks = Bookmark::with(['user', 'category'])
+            ->latest()
+            ->when(Auth::check(), function ($query) {
+                return $query->where('user_id', Auth::id());
+            })
+            ->paginate(2);
 
         return view('bookmarks.index', compact('bookmarks'));
     }
