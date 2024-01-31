@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateCommentRequest;
+use App\Http\Requests\CommentUpdateRequest;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Topic;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -21,7 +22,7 @@ class CommentController extends Controller
         return view('comments.index', compact('comments'));
     }
 
-    public function create(Post $post)
+    public function create(Topic $topic)
     {
         return view('comments.create', compact('post'));
     }
@@ -29,12 +30,12 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'aphorism' => 'required',
+            'content' => 'required',
             'post_id' => 'required',
         ]);
 
         $comment = $request->user()->comments()->create([
-            'aphorism' => $request->aphorism,
+            'content' => $request->content,
             'post_id' => $request->post_id,
         ]);
 
@@ -48,7 +49,7 @@ class CommentController extends Controller
         ]);
     }
 
-    public function update(UpdateCommentRequest $request, Comment $comment)
+    public function update(CommentUpdateRequest $request, Comment $comment)
     {
         $comment->update($request->validated());
 

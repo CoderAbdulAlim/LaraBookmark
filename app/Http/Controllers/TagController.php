@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateTagRequest;
+use App\Http\Requests\TagUpdateRequest;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -56,7 +56,7 @@ class TagController extends Controller
         ]);
     }
 
-    public function update(UpdateTagRequest $request, Tag $tag)
+    public function update(TagUpdateRequest $request, Tag $tag)
     {
         $tag->update($request->validated());
 

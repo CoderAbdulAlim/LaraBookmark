@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('welcome') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
@@ -17,14 +17,11 @@
                     </x-nav-link>
 
                     @auth
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('bookmarks')" :active="request()->routeIs('bookmarks')">
                         {{ __('Bookmark') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('posts')" :active="request()->routeIs('posts')">
-                        {{ __('Post') }}
+                    <x-nav-link :href="route('topics')" :active="request()->routeIs('topics')">
+                        {{ __('Topic') }}
                     </x-nav-link>
                     <x-nav-link :href="route('categories')" :active="request()->routeIs('categories')">
                         {{ __('Category') }}
@@ -102,8 +99,8 @@
             </x-responsive-nav-link>
             @endguest
             @auth
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('bookmarks')" :active="request()->routeIs('bookmarks')">
+                {{ __('Bookmark') }}
             </x-responsive-nav-link>
             @endauth
         </div>

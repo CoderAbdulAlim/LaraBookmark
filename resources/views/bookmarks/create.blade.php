@@ -82,7 +82,7 @@
 
                         <!-- Submit Button -->
                         <div class="flex items-center justify-end mt-5">
-                            <x-primary-button class="ms-4 bg-white text-black">
+                            <x-primary-button class="ms-4 bg-black text-white">
                                 {{ __('Submit New Bookmark') }}
                             </x-primary-button>
                         </div>

@@ -15,8 +15,8 @@ class Tag extends Model
         'description',
     ];
 
-    public function posts():BelongsToMany
+    public function topics():BelongsToMany
     {
-        return $this->belongsToMany(Post::class);
+        return $this->belongsToMany(Topic::class);
     }
 }

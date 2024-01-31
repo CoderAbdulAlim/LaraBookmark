@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateBookmarkRequest;
+use App\Http\Requests\BookmarkUpdateRequest;
 use App\Models\Bookmark;
 use App\Models\Category;
 use App\Models\ContentType;
@@ -22,11 +22,12 @@ class BookmarkController extends Controller
 
     public function index()
     {
-        $bookmarks = Bookmark::with(['user', 'category'])
-            ->latest()
-            ->when(Auth::check(), function ($query) {
-                return $query->where('user_id', Auth::id());
-            })
+        // $bookmarks = Bookmark::with(['user', 'category'])
+        //     ->latest()
+        //     ->when(Auth::check(), function ($query) {
+        //         return $query->where('user_id', Auth::id());
+        //     })
+        $bookmarks = Bookmark::with(['user', 'category'])->where('id', auth()->id())->latest()
             ->paginate(2);
 
         return view('bookmarks.index', compact('bookmarks'));
@@ -88,7 +89,7 @@ class BookmarkController extends Controller
         return view('bookmarks.edit', compact('bookmark', 'categories', 'tags', 'contenttypes', 'readstatuses'));
     }
 
-    public function update(UpdateBookmarkRequest $request, Bookmark $bookmark)
+    public function update(BookmarkUpdateRequest $request, Bookmark $bookmark)
     {
         $this->validate($request, [
             'name' => [

@@ -19,8 +19,8 @@ class ReadStatus extends Model
         return $this->hasMany(Bookmark::class);
     }
 
-    public function posts():HasMany
+    public function topics():HasMany
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Topic::class);
     }
 }

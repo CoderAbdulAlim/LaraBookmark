@@ -19,9 +19,9 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function post():BelongsTo
+    public function topic():BelongsTo
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(Topic::class);
     }
 
     public function bookmark():BelongsTo

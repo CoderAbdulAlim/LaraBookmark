@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdatePostRequest extends FormRequest
+class CategoryUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,14 +19,11 @@ class UpdatePostRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:75',
-            // 'url' => 'required|string|max:255|unique:posts,url,' . $this->route('posts'),
-            'content' => 'required|string',
-            'category_id' => 'required|integer',
+            'name' => 'required|string|max:21|unique:categories',
+            'description' => 'required|string|max:75',
         ];
     }
 }
