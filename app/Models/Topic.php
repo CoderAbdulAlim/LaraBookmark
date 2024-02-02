@@ -39,8 +39,8 @@ class Topic extends Model
         return $this->belongsTo(ReadStatus::class);
     }
 
-    public function comments(): HasMany
+    public function topic_comments(): HasMany
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(TopicComment::class);
     }
 }

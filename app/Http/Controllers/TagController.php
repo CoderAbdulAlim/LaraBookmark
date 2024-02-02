@@ -15,7 +15,7 @@ class TagController extends Controller
     
     public function index()
     {
-        $tags = Tag::orderBy('created_at', 'desc')->paginate(2);
+        $tags = Tag::orderBy('created_at', 'desc')->paginate(5);
 
         return view('tags.index', compact('tags'));
     }
@@ -44,9 +44,9 @@ class TagController extends Controller
 
     public function show(Tag $tag)
     {
-        $posts = $tag->posts;
+        $topics = $tag->topics;
 
-        return view('tags.show', compact('tag','posts'));
+        return view('tags.show', compact('tag','topics'));
     }
 
     public function edit(Tag $tag)

@@ -6,6 +6,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\TopicCommentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -56,11 +57,11 @@ Route::patch('/tags/{tag}/update', [TagController::class, 'update'])->middleware
 Route::delete('/tags/{tag}', [TagController::class, 'destroy'])->middleware(['auth', 'verified'])->name('tags.destroy');
 
 //comments route
-Route::get('/comments', [CommentController::class, 'index'])->middleware(['auth', 'verified'])->name('comments');
-Route::get('/comments/{post}/create', [CommentController::class, 'create'])->middleware(['auth', 'verified'])->name('comments.create');
-Route::post('/comments', [CommentController::class, 'store'])->middleware(['auth', 'verified'])->name('comments.store');
-Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->middleware(['auth', 'verified'])->name('comments.edit');
-Route::patch('/comments/{comment}/update', [CommentController::class, 'update'])->middleware(['auth', 'verified'])->name('comments.update');
-Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->middleware(['auth', 'verified'])->name('comments.destroy');
+Route::get('/topic_comments', [TopicCommentController::class, 'index'])->middleware(['auth', 'verified'])->name('topic_comments');
+Route::get('/topic_comments/{topic}/create', [TopicCommentController::class, 'create'])->middleware(['auth', 'verified'])->name('topic_comments.create');
+Route::post('/topic_comments/{topic}', [TopicCommentController::class, 'store'])->middleware(['auth', 'verified'])->name('topic_comments.store');
+Route::get('/topic_comments/{comment}/edit', [TopicCommentController::class, 'edit'])->middleware(['auth', 'verified'])->name('topic_comments.edit');
+Route::patch('/topic_comments/{comment}/update', [TopicCommentController::class, 'update'])->middleware(['auth', 'verified'])->name('topic_comments.update');
+Route::delete('/topic_comments/{comment}', [TopicCommentController::class, 'destroy'])->middleware(['auth', 'verified'])->name('topic_comments.destroy');
 
 require __DIR__.'/auth.php';

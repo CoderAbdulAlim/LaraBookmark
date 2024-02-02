@@ -29,8 +29,8 @@
                     <x-nav-link :href="route('tags')" :active="request()->routeIs('tags')">
                         {{ __('Tag') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('comments')" :active="request()->routeIs('comments')">
-                        {{ __('Comment') }}
+                    <x-nav-link :href="route('topic_comments')" :active="request()->routeIs('topic_comments')">
+                        {{ __('Topic Comment') }}
                     </x-nav-link>
                     @endauth
                 </div>

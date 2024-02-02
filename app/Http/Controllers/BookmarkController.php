@@ -9,7 +9,6 @@ use App\Models\ContentType;
 use App\Models\ReadStatus;
 use App\Models\Tag;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class BookmarkController extends Controller
@@ -28,7 +27,7 @@ class BookmarkController extends Controller
         //         return $query->where('user_id', Auth::id());
         //     })
         $bookmarks = Bookmark::with(['user', 'category'])->where('id', auth()->id())->latest()
-            ->paginate(2);
+            ->paginate(5);
 
         return view('bookmarks.index', compact('bookmarks'));
     }

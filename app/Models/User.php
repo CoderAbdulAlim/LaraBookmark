@@ -44,9 +44,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function posts():HasMany
+    public function topics():HasMany
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Topic::class);
     }
 
     public function bookmarks():HasMany
@@ -54,8 +54,8 @@ class User extends Authenticatable
         return $this->hasMany(Bookmark::class);
     }
 
-    public function comments():HasMany
+    public function topic_comments():HasMany
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(TopicComment::class);
     }
 }

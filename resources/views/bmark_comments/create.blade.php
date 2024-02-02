@@ -10,9 +10,9 @@
                     {{ __('Back to Comment List') }}
                 </x-primary-button>
             </a>
-            <a href="{{ route('posts') }}">
+            <a href="{{ route('topics') }}">
                 <x-primary-button class="ms-4 text-sm text-white-600 hover:text-green-400 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    {{ __('Back to Post List') }}
+                    {{ __('Back to Topic List') }}
                 </x-primary-button>
             </a>
         </div>
@@ -23,14 +23,14 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 text-black border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <div class="p-6 text-black border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
                     <!-- Comment Form START -->
-                    <form method="POST" action="{{ route('comments.store', $post) }}">
+                    <form method="POST" action="{{ route('comments.store', $topic) }}">
                         @csrf
 
                         <div>
-                            {{ 'Comment of :: ' . $post->id . ' # ' .  $post->title}}
+                            {{ 'Comment of :: ' . $topic->id . ' # ' . $topic->title }}
                         </div>
                         <!-- Comment content -->
                         <div class="mt-5">
@@ -39,8 +39,8 @@
                             <x-input-error :messages="$errors->get('content')" class="mt-2" />
                         </div>
 
-                        <!-- Hidden Input for Post ID -->
-                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                        <!-- hidden value for topic -->
+                        <input type="hidden" name="topic_id" value="{{ $topic->id }}">
 
                         <!-- Submit Button -->
                         <div class="flex items-center justify-end mt-5">

@@ -24,7 +24,7 @@ class TopicController extends Controller
             ->when(Auth::check(), function ($query) {
                 return $query->where('user_id', Auth::id());
             })
-            ->paginate(2);
+            ->paginate(5);
 
         return view('topics.index', compact('topics'));
     }

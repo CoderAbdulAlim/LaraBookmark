@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Full Post') }}
+            {{ __('Full Topic') }}
         </h2>
     </x-slot>
 
@@ -10,10 +10,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <!-- Blog Show START -->
-                    <h2 class="text-4xl font-extrabold dark:text-white">{{ $post->title }}</h2>
-                    <p class="mb-4 text-lg font-normal text-gray-500 dark:text-gray-400">{{ $post->content }}</p>
+                    <h2 class="text-4xl font-extrabold dark:text-white">{{ $topic->title }}</h2>
+                    <p class="mb-4 text-lg font-normal text-gray-500 dark:text-gray-400">{{ $topic->content }}</p>
                     <p class="mb-4 text-lg font-normal text-gray-500 dark:text-gray-400">
-                        @foreach($post->tags as $tag)
+                        @foreach($topic->tags as $tag)
                         <a href="#" class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline">
                             {{ $tag->name }}
                         </a>

@@ -49,9 +49,4 @@ class Bookmark extends Model
     {
         return $this->belongsTo(ReadStatus::class);
     }
-
-    public function comments(): HasMany
-    {
-        return $this->hasMany(Comment::class);
-    }
 }

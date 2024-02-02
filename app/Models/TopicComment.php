@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Comment extends Model
+class TopicComment extends Model
 {
     use HasFactory;
 
@@ -22,10 +22,5 @@ class Comment extends Model
     public function topic():BelongsTo
     {
         return $this->belongsTo(Topic::class);
-    }
-
-    public function bookmark():BelongsTo
-    {
-        return $this->belongsTo(Bookmark::class);
     }
 }

@@ -15,7 +15,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::orderBy('created_at', 'desc')->paginate(2);
+        $categories = Category::orderBy('created_at', 'desc')->paginate(5);
 
         return view('categories.index', compact('categories'));
     }
@@ -47,9 +47,9 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        $posts = $category->posts;
+        $topics = $category->topics;
 
-        return view('categories.show', compact('category','posts'));
+        return view('categories.show', compact('category','topics'));
     }
 
     public function edit(Category $category)
