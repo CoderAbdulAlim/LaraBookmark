@@ -27,7 +27,7 @@
                     </a>
                     <div class="mb-4 text-lg font-normal text-gray-500 dark:text-gray-400">
                         @foreach($topic->topic_comments as $comment)
-                        <p class="inline-flex items-center text-lg text-gray-500 dark:text-gray-400">
+                        <p class="items-center text-lg text-gray-500 dark:text-gray-400">
                             {{ $comment->content }}
                         </p>
                         @endforeach

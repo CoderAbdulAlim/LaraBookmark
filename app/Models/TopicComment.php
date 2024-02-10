@@ -12,6 +12,7 @@ class TopicComment extends Model
 
     protected $fillable = [
         'content',
+        'topic_id',
     ];
 
     public function user():BelongsTo

@@ -23,7 +23,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-black border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <div class="p-6 text-black border-b dark:bg-gray-400 dark:border-gray-700">
 
                     <!-- Comment Form START -->
                     <form method="POST" action="{{ route('topic_comments.store', $topic) }}">

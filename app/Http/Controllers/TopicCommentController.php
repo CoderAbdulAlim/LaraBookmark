@@ -6,6 +6,7 @@ use App\Http\Requests\TopicCommentUpdateRequest;
 use App\Models\Topic;
 use App\Models\TopicComment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TopicCommentController extends Controller
 {
@@ -30,8 +31,9 @@ class TopicCommentController extends Controller
     {
         $request->validate([
             'content' => 'required',
+            'topic_id' => 'required|exists:topics,id',
         ]);
-        // dd($request->all());
+        
         $comment = $request->user()->topic_comments()->create([
             'content' => $request->content,
             'topic_id' => $request->topic_id,
@@ -42,7 +44,7 @@ class TopicCommentController extends Controller
         if ($comment) {
             return redirect()->route('topics.show', ['topic' => $topic])->with('success', 'Comments created successfully');
         } else {
-            return redirect()->back()->withInput()->withErrors(['error' => 'Failed to create transaction']);
+            return redirect()->back()->withInput()->withErrors(['error' => 'Failed to store comment']);
         }
     }
 
