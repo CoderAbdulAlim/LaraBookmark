@@ -29,6 +29,9 @@
                     <x-nav-link :href="route('tags')" :active="request()->routeIs('tags')">
                         {{ __('Tag') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('bmark_comments')" :active="request()->routeIs('bmark_comments')">
+                        {{ __('Bookmark Comment') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('topic_comments')" :active="request()->routeIs('topic_comments')">
                         {{ __('Topic Comment') }}
                     </x-nav-link>

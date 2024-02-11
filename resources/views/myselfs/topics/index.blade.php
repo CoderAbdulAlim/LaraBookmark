@@ -2,12 +2,12 @@
     @auth
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Topic Comment::List') }}
+            {{ __('Topic::List') }}
         </h2>
         <div class="flex items-center justify-end mt-4">
-            <a href="{{ route('bookmarks') }}">
+            <a href="{{ route('topics.create') }}">
                 <x-primary-button class="ms-4 text-sm text-white-600 hover:text-green-400 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    {{ __('Back to Bookmark') }}
+                    {{ __('Add new Topic') }}
                 </x-primary-button>
             </a>
         </div>
@@ -35,10 +35,13 @@
                                         Id
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Comment
+                                        Topic
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Post
+                                        Author
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Category
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Action
@@ -46,7 +49,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($comments as $comment)
+                                @foreach($topics as $topic)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="w-4 p-4">
                                         <div class="flex items-center">
@@ -55,17 +58,21 @@
                                         </div>
                                     </td>
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $comment->id }}
+                                        {{ $topic->id }}
                                     </th>
                                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $comment->content }}
+                                        {{ $topic->title }}
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $comment->content }}
+                                        {{ $topic->user->name }}
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ $topic->category->name }}
                                     </td>
                                     <td class="flex items-center px-6 py-4">
-                                        <a href="{{ route('bmark_comments.edit', $comment) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                        <form action="{{ route('bmark_comments.destroy', $comment) }}" method="POST" class="inline-block">
+                                        <a href="{{ route('topics.show', $topic) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
+                                        <a href="{{ route('topics.edit', $topic) }}" class="ml-4 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        <form action="{{ route('topics.destroy', $topic) }}" method="POST" class="inline-block">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</bitton>
@@ -77,7 +84,7 @@
                         </table>
                     </div>
                     <div class="mt-6">
-                        {{ $comments->links() }}
+                        {{ $topics->links() }}
                     </div>
 
                     <!-- Table END -->

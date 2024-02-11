@@ -49,7 +49,6 @@
                         <div class="mt-5">
                             <x-input-label for="category_id" :value="__('Category')" class="text-gray-900 whitespace-nowrap dark:text-white" />
                             <select id="category_id" name="category_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
-                                <option value="">Select Category</option>
                                 @foreach($categories as $category)
                                 <option value="{{$category->id}}">{{ $category->name }}</option>
                                 @endforeach
@@ -73,7 +72,6 @@
                         <div class="mt-5">
                             <x-input-label for="contenttype_id" :value="__('Content Type')" class="text-gray-900 whitespace-nowrap dark:text-white" />
                             <select id="contenttype_id" name="contenttype_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
-                                <option value="">Select Type</option>
                                 @foreach($contenttypes as $contenttype)
                                 <option value="{{$contenttype->id}}">{{ $contenttype->name }}</option>
                                 @endforeach

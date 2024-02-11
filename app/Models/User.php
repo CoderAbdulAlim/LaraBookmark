@@ -54,6 +54,11 @@ class User extends Authenticatable
         return $this->hasMany(Bookmark::class);
     }
 
+    public function bmark_comments():HasMany
+    {
+        return $this->hasMany(BmarkComment::class);
+    }
+
     public function topic_comments():HasMany
     {
         return $this->hasMany(TopicComment::class);

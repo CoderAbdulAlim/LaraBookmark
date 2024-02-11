@@ -13,7 +13,6 @@ use Illuminate\Validation\Rule;
 
 class BookmarkController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware(['auth'])->only(['store']);
@@ -21,12 +20,9 @@ class BookmarkController extends Controller
 
     public function index()
     {
-        // $bookmarks = Bookmark::with(['user', 'category'])
-        //     ->latest()
-        //     ->when(Auth::check(), function ($query) {
-        //         return $query->where('user_id', Auth::id());
-        //     })
-        $bookmarks = Bookmark::with(['user', 'category'])->where('id', auth()->id())->latest()
+        $bookmarks = Bookmark::with(['user', 'category'])
+            ->where('user_id', auth()->id())
+            ->latest()
             ->paginate(5);
 
         return view('bookmarks.index', compact('bookmarks'));

@@ -5,14 +5,14 @@
             {{ __('Comment::New Form') }}
         </h2>
         <div class="flex items-center justify-end mt-4">
-            <a href="{{ route('comments') }}">
+            <a href="{{ route('bmark_comments') }}">
                 <x-primary-button class="ms-4 text-sm text-white-600 hover:text-green-400 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     {{ __('Back to Comment List') }}
                 </x-primary-button>
             </a>
-            <a href="{{ route('topics') }}">
+            <a href="{{ route('bookmarks') }}">
                 <x-primary-button class="ms-4 text-sm text-white-600 hover:text-green-400 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    {{ __('Back to Topic List') }}
+                    {{ __('Back to Bookmark List') }}
                 </x-primary-button>
             </a>
         </div>
@@ -26,11 +26,11 @@
                 <div class="p-6 text-black border-b dark:bg-gray-400 dark:border-gray-700">
 
                     <!-- Comment Form START -->
-                    <form method="POST" action="{{ route('comments.store', $topic) }}">
+                    <form method="POST" action="{{ route('bmark_comments.store', $bookmark) }}">
                         @csrf
 
                         <div>
-                            {{ 'Comment of :: ' . $topic->id . ' # ' . $topic->title }}
+                            {{ 'Comment of :: ' . $bookmark->id . ' # ' . $bookmark->title }}
                         </div>
                         <!-- Comment content -->
                         <div class="mt-5">
@@ -39,8 +39,10 @@
                             <x-input-error :messages="$errors->get('content')" class="mt-2" />
                         </div>
 
-                        <!-- hidden value for topic -->
-                        <input type="hidden" name="topic_id" value="{{ $topic->id }}">
+                        <!-- hidden value for bookmark -->
+                        <div>
+                            <x-text-input id="bookmark_id" class="block mt-1 w-full" type="hidden" name="bookmark_id" :value="$bookmark->id" required autofocus autocomplete="bookmark_id" />
+                        </div>
 
                         <!-- Submit Button -->
                         <div class="flex items-center justify-end mt-5">

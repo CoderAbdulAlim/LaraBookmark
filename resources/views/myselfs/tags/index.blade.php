@@ -2,12 +2,12 @@
     @auth
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Topic Comment::List') }}
+            {{ __('Tag::List') }}
         </h2>
         <div class="flex items-center justify-end mt-4">
-            <a href="{{ route('bookmarks') }}">
+            <a href="{{ route('tags.create') }}">
                 <x-primary-button class="ms-4 text-sm text-white-600 hover:text-green-400 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    {{ __('Back to Bookmark') }}
+                    {{ __('Add new Tag') }}
                 </x-primary-button>
             </a>
         </div>
@@ -35,10 +35,13 @@
                                         Id
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Comment
+                                        Tag Name
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Post
+                                        Description
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Related with
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Action
@@ -46,7 +49,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($comments as $comment)
+                                @foreach($tags as $tag)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="w-4 p-4">
                                         <div class="flex items-center">
@@ -55,17 +58,25 @@
                                         </div>
                                     </td>
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $comment->id }}
+                                        {{ $tag->id }}
                                     </th>
                                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $comment->content }}
+                                        {{ $tag->name }}
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $comment->content }}
+                                        {{ $tag->description }}
                                     </td>
-                                    <td class="flex items-center px-6 py-4">
-                                        <a href="{{ route('bmark_comments.edit', $comment) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                        <form action="{{ route('bmark_comments.destroy', $comment) }}" method="POST" class="inline-block">
+                                    <td class="px-6 py-4">
+                                        <div>
+                                            <a href="{{ route('tags.show', $tag) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Show all Bookmarks with this tag</a>
+                                        </div>
+                                        <div class="mt-3">
+                                            <a href="{{ route('tags.show', $tag) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Show all Post with this tag</a>
+                                        </div>
+                                    </td>
+                                    <td class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        <a href="{{ route('tags.edit', $tag) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        <form action="{{ route('tags.destroy', $tag) }}" method="POST" class="inline-block">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</bitton>
@@ -77,7 +88,7 @@
                         </table>
                     </div>
                     <div class="mt-6">
-                        {{ $comments->links() }}
+                        {{ $tags->links() }}
                     </div>
 
                     <!-- Table END -->
